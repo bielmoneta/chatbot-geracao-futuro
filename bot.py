@@ -1,6 +1,6 @@
+import os
 import logging
 from telegram.ext import Application, CommandHandler, ConversationHandler, MessageHandler, filters
-import config
 import database
 import handlers
 
@@ -16,6 +16,9 @@ def main():
     database.criar_banco()
 
     # Cria a aplicação do bot usando o token do arquivo de configuração
+    TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+    if not TELEGRAM_TOKEN:
+        raise ValueError("Variável de ambiente TELEGRAM_TOKEN não encontrada!")
     application = Application.builder().token(config.TELEGRAM_TOKEN).build()
 
     # --- Conversas (Fluxos com Múltiplos Passos) ---
