@@ -1,6 +1,7 @@
 import os
 import logging
 from telegram.ext import Application, CommandHandler, ConversationHandler, MessageHandler, filters
+import config
 import database
 import handlers
 
